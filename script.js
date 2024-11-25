@@ -30,4 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {  // Added a event lis
     let NameInput = document.getElementById('name'); // Declaring a variable name NameInput and using getElementById to find the HTML element.
     let bgColorInput = document.getElementById('background-color'); // Declaring a variable name bgColorInput and using getElementById to find the HTML element.
     let fgColorInput = document.getElementById('foreground-color'); // Declaring a variable name fgColorInput and using getElementById to find the HTML element.
+
+    let savedName = localStorage.getItem('userName'); // Declaring a variable named savedName and using getItem to retrieve the saved userName from localStorage.
+    let savedBgColor = localStorage.getItem('bgColor'); // Declaring a variable named savedBgColor and using getItem to retrieve the saved background color from localStorage.
+    let savedFgColor = localStorage.getItem('fgColor'); // Declaring a variable named savedFgColor and using getItem to retrieve the saved foreground color from localStorage.
+    console.log('Saved preferences:', { savedName, savedBgColor, savedFgColor }); // Console logs the savedName, savedBgColor, and savedFgColor
 });
