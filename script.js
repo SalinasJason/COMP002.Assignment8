@@ -20,20 +20,41 @@ document.addEventListener('DOMContentLoaded', function() {  // Added a event lis
     let fgColorInput = document.getElementById('foreground-color'); // Declaring a variable name fgColorInput and using getElementById to find the HTML element.
     console.log('Local storage details:', localStorage) // Console logs local storage details.
 
+    // Loads saved preferences from localStorage
     let savedName = localStorage.getItem('userName'); // Declaring a variable named savedName and using getItem to retrieve the saved userName from localStorage.
     let savedBgColor = localStorage.getItem('bgColor'); // Declaring a variable named savedBgColor and using getItem to retrieve the saved background color from localStorage.
     let savedFgColor = localStorage.getItem('fgColor'); // Declaring a variable named savedFgColor and using getItem to retrieve the saved foreground color from localStorage.
     console.log('Saved preferences:', { savedName, savedBgColor, savedFgColor }); // Console logs the savedName, savedBgColor, and savedFgColor
 
-    if (savedName) { // Checks if there is a saved name.
+    // If there are saved preferences, apply them
+    if (savedName, savedBgColor, savedFgColor) { // Checks if there is a saved name, saved Bg Color and saved Fg Color.
         NameInput.value = savedName; // Sets the value of the userName input to the saved name.
         document.body.style.backgroundColor = savedBgColor; // Sets the background color of the page to the saved background color.
         document.body.style.color = savedFgColor; // Sets the text color of the page to the saved foreground color.
-        greeting.textContent = `Welcome, ${savedName}`; // Display a greeting message with the saved name.
+        greeting.textContent = `Welcome back, ${savedName}`; // Display a greeting message with the saved name.
         console.log('Applied saved preferences'); // Console logs Applied saved preferences
     }      
     
     form.addEventListener('submit', function (event) { // Added an event listener "submit" to the form.
         event.preventDefault(); // Prevent the default form submission behavior.
+
+        // Getting the values from the form inputs
+        let userName = NameInput.value; // Declaring the variable userName and getting the value from the NameInput input field.
+        let bgColor = bgColorInput.value; // Declaring the variable bgColor and getting the value from the bgColorInput input field.
+        let fgColor = fgColorInput.value; // Declaring the variable fgColor and getting the value from the fgColorInput input field.
+        console.log('Form submitted with values:', { userName, bgColor, fgColor });
+   
+        // Saves the values to localStorage
+        localStorage.setItem('userName', userName); // Saves the user name to localStorage.
+        localStorage.setItem('bgColor', bgColor); // Saves the background color to localStorage.
+        localStorage.setItem('fgColor', fgColor); // Saves the foreground color to localStorage.
+      
+        // Applies the user's preferences to the page
+        document.body.style.backgroundColor = bgColor; // Sets the background color of the page to the user's preference.
+        document.body.style.color = fgColor; // Sets the text color of the page to the user's preference.
+        greeting.textContent = `Welcome, ${userName}!`; // Displays a greeting message with the user's name.
+        
+        alert('Preferences saved and applied!'); // Alerts the user that their preferences have been saved and applied.
+        console.log('Preferences saved and applied');  // Console logs preferences saved and applied
     });
 });
